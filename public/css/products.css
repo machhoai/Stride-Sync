@@ -1,0 +1,538 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior:smooth;
+}
+
+html::-webkit-scrollbar{
+    width: 5px;
+}
+
+html::-webkit-scrollbar-thumb{
+    background-color: #222831;
+    border-radius: 10rem;
+}
+
+#btnScrollToTop{
+    visibility: hidden;
+    position: fixed;
+    height: 3rem;
+    width: 3rem;
+    z-index: 10000;
+    bottom: 1rem;
+    right: 1rem;
+    opacity: 0;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+#btnScrollToTop button{
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+body{
+    background-color: rgba(228, 227, 227, 0.87);
+}
+
+/*-----------navigation-----------*/
+
+.navigation{
+    height: 100%;
+    width: 65px;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+    box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1);
+    background-color: #EEEEEE;
+    font-family: "Sono", monospace;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+    font-variation-settings:"MONO" 1;
+    transition: 0.5s;
+    z-index:100000;
+}
+
+.navigation:hover{
+    width: 240px;
+}
+
+.navigation :where(p, h4, #helpCenter){
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.5s;
+}
+
+.navigation:hover{
+    width: 240px;
+}
+
+.navigation:hover.navigation :where(p, h4, #helpCenter){
+    visibility:visible;
+    opacity: 1;
+}
+
+.navigation .logo{
+    display: flex;
+    align-items: center;
+    height: 84px;
+    width: 100%;
+}
+
+.navigation .logo img{
+    width: 100%;
+    object-fit: fill;
+}
+
+.navigation .item
+{
+    width: 100%;
+    min-width: 200px;
+}
+
+.navigation .item :where(.route, .account)
+{
+    margin: 2rem 0;
+}
+
+.navigation .item a{
+    text-decoration: none;
+}
+
+.navigation .item ul li{
+    list-style-type: none;
+    color: #222831bd;
+    height: 46px;
+    margin-bottom: 12px;
+    padding-left: 20px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    position: relative;
+    font-size: 1.2rem;
+    font-family: "Sono", monospace;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+    font-variation-settings:"MONO" 1;
+    cursor: pointer;
+}
+
+.navigation .item ul li p {
+    position: relative;
+}
+
+.item :where(.route, .account) ion-icon {
+    font-size: 25px;
+    height: 100%;
+    margin-right: 15px;
+    font-weight: 500;
+}
+
+.account h4 {
+    margin-left: 20px;
+    margin-bottom: 10px;
+}
+
+.navigation .item ul li#here::before{
+    content: "";
+    background-color: #222831;
+    position: absolute;
+    height: 100%;
+    width: 5px;
+    border-radius: 0 5px 5px 0;
+    left: 0;
+}
+
+.navigation .item ul li:hover{
+    color: #222831;
+}
+
+.navigation .item ul li#here {
+    color: #222831;
+}
+
+.help-center{
+    visibility: hidden;
+    background-color: #76ABAE;
+    width: 216px;
+    margin-top: 2rem;
+    margin-inline: auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    border-radius: 10px;
+    color: #222831;
+}
+
+.help-center span {
+    height: 60px;
+    width: 60px;
+    background-color: #EEEEEE;
+    position: absolute;
+    top: -26px;
+    border-radius: 50px;
+    display: flex;
+    justify-self: center;
+    align-items: center;
+    box-shadow: 0px 21px 12px -5px rgba(0,0,0,0.1);
+}
+
+.help-center span ion-icon {
+    font-size: 25px;
+    margin: auto;
+    border-radius: 50px;
+    height: 30px;
+    width: 30px;
+    padding: 5px;
+    background-color: #76ABAE;
+    color: #222831;
+}
+
+.help-center h3{
+    margin-top: 30px;
+}
+
+.help-center p{
+    text-wrap: balance ;
+    font-size: 15px;
+    text-align: center;
+    width: 120%;
+    z-index: 10;
+}
+
+.btn-help{
+    height: 40px;
+    z-index: 10;
+    background-color: #EEEEEE;
+    margin-top: 30px;
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    width: 100%;
+    font-family: "Sono", monospace;
+    font-style: normal;
+    text-wrap: nowrap;
+    text-align: center;
+    box-shadow: 0px 21px 12px -5px rgba(0,0,0,0.1);
+    cursor: pointer;
+}
+
+.btn-help:hover {
+    box-shadow: none;
+    transition: 0.3s;
+}
+
+
+.help-center #glass {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    background-color: transparent;
+    top: 0;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.help-center #glass::before,
+.help-center #glass::after {
+    content: "";
+    border-radius: 50%;
+    position: absolute;
+    background-color: #eeeeeea6;
+}
+
+.help-center #glass::before {
+    height: 100px;
+    width: 100px;
+    top: -40px; 
+    left: -60px; 
+}
+
+.help-center #glass::after {
+    bottom: -70px;
+    right: -70px;
+    height: 150px;
+    width: 150px;
+}
+
+/*-----------Section-----------*/
+
+section{
+    margin-left: 65px;
+    padding: 10px 20px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+.welcome-box h1{
+    font-size: 25px;
+}
+
+.welcome-box h4{
+    font-weight: 400;
+    margin-top: 5px;
+}
+
+.search-box{
+    position: absolute;
+    left: 50%;
+}
+
+.search-box span {
+    display: flex;
+    height: 40px;
+    width: 380px;
+    padding: 10px;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    background-color: #EEEEEE;
+    box-shadow: 0px 4px 15px 0px rgba(0,0,0,0.15);
+}
+
+.search-box span input{
+    background-color: transparent;
+    border: none;
+    outline: none;
+    width: 85%;
+    height: 100%;
+    font-size: 15px;
+}
+
+.search-box span button{
+    width: 30px;
+    background-color: transparent;
+    border: none;
+    height: 30px;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.user-box{
+    height: 50px;
+    width: 120px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.user-box  :where(.user-avt, .notification){
+    background-color: #EEEEEE;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 25px;
+    height: 50px;
+    width: 50px;
+    box-shadow: 0px 4px 15px 0px rgba(0,0,0,0.15);
+    overflow: hidden;
+}
+
+.user-box #user-avatar{
+    height: 100%;
+    width: 100%;
+}
+
+/* --------Products---------- */
+
+.container {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+    grid-template-rows: 200px 1fr;
+    margin-top: 2rem;
+    grid-row-gap: 2rem;
+}
+
+.ads{
+    font-size: 50px;
+    font-weight: 200;
+    font-family: 'Times New Roman', Times, serif;
+    grid-column-start:1;
+    grid-column-end:3;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    background-image: url(../productPic/ads.webp);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 1rem;
+}
+
+.container .left {
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.filter {
+    
+    position: sticky;
+    position: -webkit-sticky;
+    top: 1rem;
+    background-color: #EEEEEE;
+    width: 100%;
+    max-height: 350px;
+    height: auto;
+    padding: 1rem 1rem 2rem 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 280px;
+    border-radius: .5rem;
+    box-shadow: 0px 4px 15px 0px rgba(0,0,0,0.15);
+    transition: 0.3s;
+}
+
+.filter:hover{
+    box-shadow: 0px 4px 15px 0px rgba(0, 0, 0, 0.295);
+}
+
+.left #searchInput{
+    position: relative;
+    width: 100%;
+    outline: none;
+    padding: 10px;
+    font-size: 14px;
+    background-color: transparent;
+    border: 1px solid #517577;
+    border-radius: 10rem;
+    margin-top: 1rem;
+    transition: 0.3s;
+    padding-left: 1rem;
+}
+
+#searchInput:focus {
+    border: 1px solid #76ABAE;
+}
+
+/* Ẩn checkbox */
+.toggle-btn input {
+    display: none;
+}
+  
+  /* Thiết lập kiểu của toggle button */
+.toggle-btn {
+    display: inline-block;
+}
+
+.category{
+    width: 100%;
+}
+
+.category span{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin-top: 0.5rem;
+    gap: 0.3rem;
+    width: 100%;
+}
+
+.content {
+    padding: 8px 15px;
+    border: 1px solid #76ABAE;
+    border-radius: 10rem;
+    cursor: pointer;
+    transition: 0.2s;
+    font-size: 12px;
+    text-align: center;
+}
+
+#priceRange{
+    display: flex;
+    flex-direction: column;
+}
+
+#priceRange input {
+    position: relative;
+    outline: none;
+    padding: 10px;
+    font-size: 14px;
+    background-color: transparent;
+    border: 1px solid #517577;
+    border-radius: 10rem;
+    margin-top: 0.5rem;
+    padding-left: 1rem;
+}
+
+#priceRange span
+{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+#priceRange span:first-child {
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    width: 100%;
+}
+
+#priceRange span:first-child input{
+    width: 100%;
+}
+
+#priceRangeInput {
+    display: flex;
+    align-items: center;
+}
+
+#priceRangeInput input{
+   width: 100%; 
+   padding-left: 1rem;
+}
+
+#priceRange #checkbox{
+    margin-top: 0;
+}
+
+#priceRange input:focus {
+    background-color: #fff;
+    border: 1px solid #76ABAE;
+}
+  
+  /* Kiểu của toggle button khi được chọn */
+/* Hiệu ứng viền màu xanh cho .toggle-btn khi checkbox được chọn */
+#shoesType:checked + .content {
+    background-color: #76ABAE;
+    border: 1px solid #517577; /* Viền màu xanh khi checkbox được chọn */
+}
+.container.right{
+    position: relative;
+}
+.container .sort {
+    width: 100%;
+    position: relative;
+    margin-bottom: 1rem;
+    margin-left: 1rem;
+}
+
+#sort {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    padding-left: 1rem;
+}
