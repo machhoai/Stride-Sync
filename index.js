@@ -4,7 +4,7 @@ const controllers = require('./controllers/controllers')
 const controllerDetails = require('./controllers/controllerDetails')
 
 const app = express()
-const port = 3000
+const port = 10000
 
 app.use(express.static('public'));
 //app.use(express.static('public/pages/scipts'));
