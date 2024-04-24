@@ -11,7 +11,7 @@
     "webpack-cli": "^5.1.4"
   },
   "scripts": {
-    "build": "npm run webpack",
+    "build": "npm install",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   }
